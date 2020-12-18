@@ -1,0 +1,54 @@
+How to Compile Alfresco community edition on Eclipse IDE on Windows PC
+
+Pre-requisite:
+•	JDK 
+•	Eclipse Enterprise IDE
+•	Alfresco source code
+
+JDK installation:
+1.	Install jdk-15.0.1_windows-x64_bin.exe on your laptop (download from Java official site)
+2.	Set new environmental variable “JAVA_HOME” with value “C:\Program Files\Java\jdk-15.0.”
+a.	Open Windows Explorer. Right click on “This PC  Properties  Advanced System Settings  Advanced  Environmental Variables  Under System Variables  New”
+Eclipse IDE:
+1.	Download and extract IDE from this link:
+                        https://www.eclipse.org/downloads/packages/release/2020-09/r/eclipse-ide-enterprise-java-developers
+
+Alfresco source code:
+1.	Unlike Linux command line, git clone option is not yet tried on Windows OS. Hence, please download source as .zip from github.
+2.	Alfresco / acs-community-packaging
+https://github.com/Alfresco/acs-community-packaging/tags
+3.	Alfresco /alfresco-community-repo
+https://github.com/Alfresco/alfresco-community-repo/tags
+4.	Choose latest version and download .zip file.
+5.	Extract both of them inside a common folder
+
+
+
+
+Failed to execute goal org.codehaus.mojo:license-maven-plugin:2.0.0:check-file-header (check-licenses) on project alfresco-repository: The plugin org.codehaus.mojo:license-maven-plugin:2.0.0 requires Maven version 3.5.4 -> [Help 1]
+
+
+
+
+Compilation steps:
+1.	Disable TSIP VPN.
+2.	From Eclipse IDE, right click on Project explorer  Import  Existing Maven Projects  Choose source code common folder
+3.	Now both pom files will be listed and select Finish.
+4.	Eclipse will download many dependent services, wait this is completed.
+5.	Right click on “alfresco-community-repo” on Project explorer  Run As  Maven build  Run configurations window will open.
+6.	Input “clean install -Dmaven.javadoc.skip=true” in Goals & Run.
+7.	This will start to build community repo (which will take 15-30mins).
+8.	Once above compilation is completed, Edit acs-community-packaging/pom.xml file’s parent node as below:
+<parent>
+        <groupId>org.alfresco</groupId>
+        <artifactId>alfresco-community-repo</artifactId>
+        <relativePath>../alfresco-community-repo-8.339/pom.xml</relativePath>     this should be your community repo version
+        <!--version>8.344</version-->
+              <version>8.339</version>   this should be your community repo version
+    </parent>
+9.	Similar to steps 5/6, input “clean install -Dmaven.javadoc.skip=true” as Run configuration Goals & Run for acs-community-packaging.
+10.	Upon successful build, check “acs-community-packaging-7.0.0-A13\distribution\target” folder for below files
+alfresco.war
+alfresco-content-services-community-distribution-7.0.0-A13.jar
+alfresco-content-services-community-distribution-7.0.0-A13.zip
+            
