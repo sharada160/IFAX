@@ -1,0 +1,64 @@
+from O365 import Account
+from O365 import MSGraphProtocol 
+from O365.message import Message
+from O365.mailbox import MailBox
+
+#credentials = ('my_client_id', 'my_client_secret')
+#credentials = ('42a56f23-f453-441d-88e3-3acb123e511c', '1Gi_.VGTn15FQrjMe~pkQ1_B2_zHeXW58W')
+credentials = ('3f708f99-56a8-42e3-a606-70dcdc7dfc92', 'YHqg8CVt~62w1rm0BJp-jbT3Vm1NIy5~~D')
+#scp = ['https://graph.microsoft.com/.default']
+
+scp = ["https://graph.microsoft.com/Mail.Send"]
+# the default protocol will be Microsoft Graph
+# the default authentication method will be "on behalf of a user"
+
+#account = Account(credentials)
+#account = Account(credentials, auth_flow_type='credentials', tenant_id='29d0dd74-80aa-401f-8e81-a864b29c30bd')
+account = Account(credentials, auth_flow_type='credentials', tenant_id='57192160-2d87-4183-b297-a03d2e69f430')
+
+#if account.authenticate():
+#if account.authenticate(scopes=scp):
+
+#protocol_graph = MSGraphProtocol()
+#scopes_graph = protocol.get_scopes_for('message all')
+# scopes here are: ['https://graph.microsoft.com/Mail.ReadWrite', 'https://graph.microsoft.com/Mail.Send']
+#account = Account(credentials, scopes=scopes_graph)
+
+fromAddress = "demouser1@smtpclientdemo.onmicrosoft.com"
+toAddressList = ["lokesh.padmanabhaiah@toshiba-tsip.com"]
+
+if account.authenticate():
+    print("Bingo!! Authenticated!")
+
+    #m = account.new_message("demouser1@smtpclientdemo.onmicrosoft.com")
+    m = account.new_message(fromAddress)
+    print("New Message m is created...")
+    m.sender.address = fromAddress
+    m.to.add(toAddressList)
+    m.body = 'Test Mail from python OAUTH2 api. With Attachment'
+    m.subject = "Test mail from script_123"
+    m.attachments.add("./attachments/send1.pdf")
+    m.send()
+
+    print("Email sent successfully...")
+    mailbox = account.mailbox(fromAddress)
+    inbox = mailbox.inbox_folder()
+    
+    print("Messages from Inbox are as follows...")
+    print("-----------------------------------")
+    for message in inbox.get_messages():
+        #print(message)
+        #print("Message Body ",	message.body)
+        print("To:  ",	message.to.add)
+        print("Subject:", message.subject)
+    print("-----------------------------------")
+
+    sent_folder = mailbox.sent_folder()
+
+    for message in sent_folder.get_messages():
+	    print(message)
+else:
+    print("NOT AUTHENTICATED....")
+
+
+
