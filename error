@@ -1,0 +1,17 @@
+Bingo!! Authenticated!
+New Message m is created...
+Client Error: 400 Client Error: Bad Request for url: https://graph.microsoft.com/v1.0/users/sample@sharada98s.onmicrosoft.com/sendMail | Error Message: Required property is missing.
+/usr/lib/python3/dist-packages/apport/report.py:13: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  import fnmatch, glob, traceback, errno, sys, atexit, locale, imp, stat
+Traceback (most recent call last):
+  File "script.py", line 42, in <module>
+    m.send()
+  File "/home/ubuntu/.local/lib/python3.8/site-packages/O365/message.py", line 695, in send
+    response = self.con.post(url, data=data)
+  File "/home/ubuntu/.local/lib/python3.8/site-packages/O365/connection.py", line 819, in post
+    return self.oauth_request(url, 'post', data=data, **kwargs)
+  File "/home/ubuntu/.local/lib/python3.8/site-packages/O365/connection.py", line 797, in oauth_request
+    return self._internal_request(self.session, url, method, **kwargs)
+  File "/home/ubuntu/.local/lib/python3.8/site-packages/O365/connection.py", line 759, in _internal_request
+    raise HTTPError('{} | Error Message: {}'.format(e.args[0], error_message), response=response) from None
+requests.exceptions.HTTPError: 400 Client Error: Bad Request for url: https://graph.microsoft.com/v1.0/users/sample@sharada98s.onmicrosoft.com/sendMail | Error Message: Required property is missing.
