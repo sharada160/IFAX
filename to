@@ -8,3 +8,24 @@ pop3
 client id - 2ba8cce6-c14b-470d-ad25-508306468991
 secret value - .rx-3Ee2XAaMA0P5drGrU03VK.M2_nNvU-
 tenant id - a78efe84-fbe2-4385-aa24-2e019f6d8480
+
+
+Bingo!! Authenticated!
+New Message m is created...
+Email sent successfully...
+Messages from Inbox are as follows...
+-----------------------------------
+To:   <bound method Recipients.add of Recipients count: 1>
+Subject: Message Center Major Change Update Notification
+To:   <bound method Recipients.add of Recipients count: 1>
+Subject: Undeliverable: Test mail from script_123
+To:   <bound method Recipients.add of Recipients count: 1>
+Subject: Message Center Major Change Update Notification
+To:   <bound method Recipients.add of Recipients count: 1>
+Subject: Message Center Major Change Update Notification
+To:   <bound method Recipients.add of Recipients count: 1>
+Subject: Weekly digest: Microsoft service updates
+To:   <bound method Recipients.add of Recipients count: 1>
+Subject: Get Started with ​Teams
+-----------------------------------
+Subject: Test mail from script_123
