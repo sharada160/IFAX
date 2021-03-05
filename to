@@ -29,3 +29,9 @@ To:   <bound method Recipients.add of Recipients count: 1>
 Subject: Get Started with ​Teams
 -----------------------------------
 Subject: Test mail from script_123
+
+
+fromAddress = "sample@sharada98s.onmicrosoft.com"
+#fromAddress = "demouser1@smtpclientdemo.onmicrosoft.com"
+toAddressList = ["sharada98s@gmail.com"]
+
