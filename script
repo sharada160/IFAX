@@ -1,0 +1,46 @@
+from O365 import Account
+from O365 import MSGraphProtocol
+from O365.message import Message
+from O365.mailbox import MailBox
+#credentials = ('my_client_id', 'my_client_secret')
+#credentials = ('42a56f23-f453-441d-88e3-3acb123e511c', '1Gi_.VGTn15FQrjMe~pkQ1_B2_zHeXW58W')
+credentials = ('2ba8cce6-c14b-470d-ad25-508306468991',
+               '.rx-3Ee2XAaMA0P5drGrU03VK.M2_nNvU-')
+#scp = ['https://graph.microsoft.com/.default']
+
+scp = ["https://graph.microsoft.com/Mail.Send"]
+# the default protocol will be Microsoft Graph
+# the default authentication method will be "on behalf of a user"
+
+#account = Account(credentials)
+#account = Account(credentials, auth_flow_type='credentials', tenant_id='29d0dd74-80aa-401f-8e81-a864b29c30bd')
+account = Account(credentials, auth_flow_type='credentials',
+                  tenant_id='a78efe84-fbe2-4385-aa24-2e019f6d8480')
+
+# if account.authenticate():
+# if account.authenticate(scopes=scp):
+
+#protocol_graph = MSGraphProtocol()
+#scopes_graph = protocol.get_scopes_for('message all')
+# scopes here are: ['https://graph.microsoft.com/Mail.ReadWrite', 'https://graph.microsoft.com/Mail.Send']
+#account = Account(credentials, scopes=scopes_graph)
+
+fromAddress = "sample@sharada98s.onmicrosoft.com"
+#fromAddress = "demouser1@smtpclientdemo.onmicrosoft.com"
+toAddressList = ["sharada98s@gmail.com"]
+
+if account.authenticate():
+    print("Bingo!! Authenticated!")
+
+    #m = account.new_message("demo@pop3orgname.onmicrosoft.com")
+    m = account.new_message(fromAddress)
+    print("New Message m is created...")
+    m.sender.address = fromAddress
+    m.to.add(toAddressList)
+    m.body = 'Test Mail from python OAUTH2 api. With Attachment'
+    m.subject = "Test mail from script_123"
+    # m.attachments.add("./attachments/send1.pdf")
+    path="./Downloads/A Sample PDF.pdf"
+    att=m.attachments.add(path)
+    m.send()
+                
